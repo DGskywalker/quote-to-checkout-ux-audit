@@ -1,77 +1,159 @@
+<div align="center">
+
 # Quote to Checkout
 
-**A UX audit and competitor benchmark of the shipment booking journey on EMX, Aramex, DHL Express and FedEx (UAE).**
+**A UX audit and competitor benchmark of the shipment booking journey**
 
-I walked each carrier's quote-to-checkout flow with the same parcel, measured every page with Lighthouse on mobile and desktop, and rated 34 usability issues against Nielsen's 10 heuristics. The study ends with 11 recommendations for EMX ranked by impact and effort, and 3 A/B tests with a sample-size calculator.
+EMX &nbsp;·&nbsp; Aramex &nbsp;·&nbsp; DHL Express &nbsp;·&nbsp; FedEx &nbsp;&nbsp;|&nbsp;&nbsp; United Arab Emirates &nbsp;&nbsp;|&nbsp;&nbsp; October 2026
 
-🔗 **[Live case study](https://quote-to-checkout-ux-audit.vercel.app/)** · **[PDF](https://quote-to-checkout-ux-audit.vercel.app/quote-to-checkout.pdf)**
+[Read the case study](https://quote-to-checkout-ux-audit.vercel.app) &nbsp;&nbsp;/&nbsp;&nbsp; [Download the PDF](https://quote-to-checkout-ux-audit.vercel.app/quote-to-checkout.pdf)
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+## Overview
+
+Four courier websites, one parcel, the same questions.
+
+I walked each carrier's quote-to-checkout flow with an identical shipment and stopped before payment. I measured every page with Lighthouse on mobile and desktop, then rated each usability problem against Nielsen's ten heuristics. The study ends with eleven recommendations for EMX, ranked by impact against effort, and three A/B tests ready to run.
+
+<br>
+
+<table>
+<tr>
+<td width="25%" align="center"><h3>34</h3>usability issues</td>
+<td width="25%" align="center"><h3>16</h3>Lighthouse runs</td>
+<td width="25%" align="center"><h3>11</h3>ranked fixes</td>
+<td width="25%" align="center"><h3>3</h3>A/B tests</td>
+</tr>
+</table>
+
+<br>
+
+## The benchmark
+
+| Measure | EMX | Aramex | DHL Express | FedEx |
+| :--- | :---: | :---: | :---: | :---: |
+| Inputs filled to see a price | **4** | 9 | 10 | 3 |
+| Price, 2 kg, Dubai to Abu Dhabi | AED 25.00 | AED 48.00 | No quote | AED 100.72 |
+| Delivery date shown with price | Yes | No | n/a | No |
+| Book without an account | **Yes** | No | Yes | No |
+| Booking page, mobile performance | **98** | 71 | 56 | 11 |
+
+<br>
 
 ## Key findings
 
-| | EMX | Aramex | DHL Express | FedEx |
-|---|---|---|---|---|
-| Inputs filled to see a price | 4 | 9 | 10 | 3 |
-| Price (2 kg, Dubai → Abu Dhabi) | AED 25.00 | AED 48.00 (+ AED 25 pre-ticked add-on) | No quote returned | AED 100.72 |
-| Delivery date shown with price | ✅ | ❌ | — | ❌ (“--”) |
-| Book without an account | ✅ | ❌ | ✅ (stated) | ❌ |
-| Booking page, mobile Lighthouse perf. | 98 | 71 | 56 | 11 |
+**EMX** &nbsp; The only site where you can book without an account and see a delivery date next to the price. Its homepage works against it: the "Send a Shipment" button opens the Card Services page, and on mobile the main content takes 13.8 seconds to appear.
 
-- **EMX** is the only site that lets you book without an account and shows a delivery date with the price. But its homepage “Send a Shipment” button links to the Card Services page, and the homepage takes 13.8 s to show its main content on mobile.
-- **Aramex** pre-ticks a SHIELD protection add-on that raises the total by 52%.
-- **DHL** returned no quote and no error message on two attempts. On phones, its UAE quote link first sends you to a country and language picker.
-- **FedEx** shows no delivery date with its rate, and its quote page scores 11 for mobile performance.
+**Aramex** &nbsp; A SHIELD protection add-on is ticked by default, raising the total from AED 48 to AED 73. Length, width and height look optional, are required, and report their errors off-screen.
+
+**DHL Express** &nbsp; Get Quote returned no rates and no message on two attempts. On phones, the UAE quote link detours through a country and language picker first.
+
+**FedEx** &nbsp; The fewest fields to a price, but the rate shows "--" where the delivery date should be, and choosing it leads to a sign-in wall. The quote page scores 11 for mobile performance.
+
+<br>
 
 ## Method
 
-- **Scenario:** Dubai → Abu Dhabi, 1 box, 2 kg, 30 × 20 × 15 cm, declared value AED 100.
-- **Rules:** dummy shipment data only. No personal data typed, no accounts created, non-essential cookies rejected. Stopped at the first screen asking for personal data, an account, or payment.
-- **Scoring:** Nielsen severity 1 Cosmetic · 2 Minor · 3 Major · 4 Catastrophe. Recommendations are ranked by impact ÷ effort (each scored 1–5).
-- **Tools:** all free, with no API keys. Lighthouse 12 runs locally on Playwright's Chromium, so there is no PageSpeed quota.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-## Repository layout
+**Scenario**
 
-| Path | What it is |
-| --- | --- |
-| `data/audit.json` | The audit: scenario, journeys, issues, recommendations, A/B tests, mobile checks |
-| `sites.json` | Pages Lighthouse measures |
-| `run-lighthouse.mjs` | Lighthouse mobile + desktop runner → `results/lighthouse.json` |
-| `form-audit.js` | DevTools console snippet: counts inputs, flags missing labels, missing number keypads, sub-16 px text |
-| `template/page.html` | Case-study page template, rendered from the JSON |
-| `build.mjs` | Builds `docs/index.html` (GitHub Pages) and `dist/index.html` |
-| `export-pdf.mjs` | Prints the page to an A4 PDF |
+Dubai to Abu Dhabi, one box, 2 kg,
+30 by 20 by 15 cm, declared value AED 100.
+
+**Rules**
+
+Dummy shipment data only. No personal data entered, no accounts created, non-essential cookies rejected. Each walk stopped at the first screen asking for personal details, a login, or payment.
+
+</td>
+<td width="50%" valign="top">
+
+**Scoring**
+
+Nielsen severity, from 1 cosmetic to 4 catastrophe. Recommendations ranked by impact divided by effort, each scored 1 to 5.
+
+**Tools**
+
+Lighthouse 12 run locally on Playwright's Chromium, Chrome DevTools device mode, and a small form-audit script. All free, with no API keys.
+
+</td>
+</tr>
+</table>
+
+<br>
+
+## Repository
+
+```
+data/audit.json          the audit: journeys, issues, recommendations, A/B tests
+sites.json               pages measured by Lighthouse
+run-lighthouse.mjs       mobile and desktop Lighthouse runner
+results/lighthouse.json  score summary
+form-audit.js            console snippet that inspects form inputs
+template/page.html       case-study page, rendered from the data
+build.mjs                builds docs/index.html
+export-pdf.mjs           prints the page to an A4 PDF
+docs/                    the published site
+```
+
+<br>
 
 ## Run it yourself
 
-Requires Node 18+.
+Requires Node 18 or later.
 
 ```bash
 npm install
 npx playwright install chromium
-npm run lighthouse   # set CHROME_PATH to Playwright's Chromium binary first
+npm run lighthouse
 npm run build
 npm run pdf
 ```
 
-On macOS, Playwright's Chromium is at:
-`~/Library/Caches/ms-playwright/chromium-*/chrome-mac/Chromium.app/Contents/MacOS/Chromium`
+Before running Lighthouse, point `CHROME_PATH` at Playwright's Chromium. On macOS:
 
-Re-run one site with `node run-lighthouse.mjs aramex` (or `aramex-booking`). Results merge into the existing summary.
+```
+~/Library/Caches/ms-playwright/chromium-*/chrome-mac/Chromium.app/Contents/MacOS/Chromium
+```
+
+To refresh a single site, run `node run-lighthouse.mjs aramex`. Results merge into the existing summary. Edit `data/audit.json`, rebuild, and every table, chart and ranking on the page updates.
+
+<br>
 
 ## Deploy
 
-The live site is hosted on Vercel. `vercel.json` serves the `docs/` folder as-is, with no build step.
+The site is hosted on Vercel. `vercel.json` serves the `docs/` folder as-is, with no build step.
 
 ```bash
 npm run build && npm run pdf && cp dist/quote-to-checkout.pdf docs/
 npx vercel deploy --prod
 ```
 
-GitHub Pages works too: Settings → Pages → Deploy from a branch → `main` / `/docs`.
+GitHub Pages also works: Settings, then Pages, then deploy from `main` with the `/docs` folder.
+
+<br>
 
 ## Limits
 
-One evaluator, one route, one session (29 Oct 2026). Lighthouse lab scores vary by a few points between runs. A heuristic review finds likely problems; it does not replace testing with real customers.
+One evaluator, one route, one session on 29 October 2026. Lighthouse lab scores move by a few points between runs. A heuristic review finds likely problems; it does not replace testing with real customers.
 
-## License
+<br>
 
-MIT for the code. EMX, Aramex, DHL and FedEx are trademarks of their owners. This is an independent study, not affiliated with any carrier.
+---
+
+<div align="center">
+
+<sub>Divyansh Gupta &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; MIT License</sub>
+
+<sub>EMX, Aramex, DHL and FedEx are trademarks of their respective owners. This is an independent study and is not affiliated with any carrier.</sub>
+
+</div>
