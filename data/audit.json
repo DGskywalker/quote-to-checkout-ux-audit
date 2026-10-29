@@ -1,0 +1,166 @@
+{
+  "meta": {
+    "title": "Quote to Checkout",
+    "auditDate": "2026-10-29",
+    "auditor": "Divyansh Gupta",
+    "scenario": {
+      "lane": "Dubai → Abu Dhabi (UAE domestic)",
+      "parcel": "1 box · 2 kg · 30 × 20 × 15 cm",
+      "declared": "AED 100",
+      "device": "Desktop Chromium 1350 px + 375 px mobile emulation",
+      "stopRule": "Stopped at the first screen asking for personal data, an account, or payment"
+    }
+  },
+  "heuristics": [
+    { "id": "H1", "name": "Visibility of system status" },
+    { "id": "H2", "name": "Match with the real world" },
+    { "id": "H3", "name": "User control and freedom" },
+    { "id": "H4", "name": "Consistency and standards" },
+    { "id": "H5", "name": "Error prevention" },
+    { "id": "H6", "name": "Recognition over recall" },
+    { "id": "H7", "name": "Flexibility and efficiency" },
+    { "id": "H8", "name": "Aesthetic and minimalist design" },
+    { "id": "H9", "name": "Error recognition and recovery" },
+    { "id": "H10", "name": "Help and documentation" }
+  ],
+  "carriers": [
+    {
+      "id": "emx", "name": "EMX", "role": "Client", "entry": "https://products.emx.ae/sendshipment",
+      "metrics": { "screensToPrice": 1, "controlsToPrice": 10, "fieldsFilled": 4, "price": "AED 25.00", "priceNote": "VAT not stated", "deliveryDate": "Sat 31 Oct", "guest": "Yes", "outcome": "Reached sender details (wizard step 3 of 5)" },
+      "journey": [
+        { "step": "Homepage", "detail": "“Get Rates & Send Shipment” tile", "controls": 0, "state": "ok" },
+        { "step": "Shipment details", "detail": "Emirates, type, weight, value, box size", "controls": 10, "state": "ok" },
+        { "step": "Service type", "detail": "Express · AED 25.00 · by Sat 31 Oct", "controls": 1, "state": "price" },
+        { "step": "Sender details", "detail": "Pickup slot, name, email, phones, map pin", "controls": 13, "state": "stop" },
+        { "step": "Receiver details", "detail": "Not entered", "controls": null, "state": "unseen" },
+        { "step": "Review & confirm", "detail": "Payment follows", "controls": null, "state": "unseen" }
+      ],
+      "strengths": ["Guest booking with no account", "Box-size presets fill L × W × H for you", "Booking page is the fastest of the four (Lighthouse 98 mobile)", "Shows an estimated delivery date with the price", "Stepper collapses to “1 of 5” on mobile"]
+    },
+    {
+      "id": "aramex", "name": "Aramex", "role": "Competitor", "entry": "https://www.aramex.com/ae/en/ship/calculate-shipping-rates",
+      "metrics": { "screensToPrice": 1, "controlsToPrice": 14, "fieldsFilled": 9, "price": "AED 48.00", "priceNote": "AED 73.00 with pre-ticked SHIELD", "deliveryDate": "Service name only (“Overnight”)", "guest": "No", "outcome": "Sign-in wall after “Create Shipment Now”" },
+      "journey": [
+        { "step": "Homepage", "detail": "Hero is tracking only; Rate Calculator further down", "controls": 0, "state": "ok" },
+        { "step": "Calculate rates", "detail": "Country, cities, zip codes, value, boxes, weight, L × W × H", "controls": 14, "state": "ok" },
+        { "step": "Rates (same page)", "detail": "AED 48.00 + SHIELD AED 25.00 pre-ticked", "controls": 2, "state": "price" },
+        { "step": "Create shipment", "detail": "Redirects to login.aramex.com", "controls": null, "state": "wall" }
+      ],
+      "strengths": ["Price shown tax-inclusive with the tax amount", "Live “total chargeable weight” as you type", "Zip fields switch off once UAE is chosen", "“Most popular” label helps the choice"]
+    },
+    {
+      "id": "dhl", "name": "DHL Express", "role": "Competitor", "entry": "https://mydhl.express.dhl/ae/en/shipment.html#/rate-and-quote",
+      "metrics": { "screensToPrice": 3, "controlsToPrice": 18, "fieldsFilled": 10, "price": "No quote", "priceNote": "Get Quote returned nothing (2 tries)", "deliveryDate": "—", "guest": "Yes (stated)", "outcome": "Silent failure at Get Quote" },
+      "journey": [
+        { "step": "Homepage widget", "detail": "“Get a Rate and Time Quote” tab", "controls": 2, "state": "ok" },
+        { "step": "From / To", "detail": "Country, address, city, province × 2", "controls": 10, "state": "ok" },
+        { "step": "Documents or packages", "detail": "With a plain-language explainer", "controls": 2, "state": "ok" },
+        { "step": "Package details", "detail": "Packaging, quantity, weight, L × W × H", "controls": 6, "state": "ok" },
+        { "step": "Get Quote", "detail": "No rates, no message", "controls": null, "state": "fail" }
+      ],
+      "strengths": ["Says “No account needed – pay with a credit card” up front", "Explains documents vs packages where you choose", "Links prohibited items for the lane", "Homepage accessibility 100 in Lighthouse"]
+    },
+    {
+      "id": "fedex", "name": "FedEx", "role": "Competitor", "entry": "https://www.fedex.com/en-ae/online/rating.html",
+      "metrics": { "screensToPrice": 1, "controlsToPrice": 12, "fieldsFilled": 3, "price": "AED 100.72", "priceNote": "Standard Overnight", "deliveryDate": "Shown as “--”", "guest": "No", "outcome": "Sign-in wall after choosing a rate" },
+      "journey": [
+        { "step": "Rate tool", "detail": "Two smart address fields (Google Places)", "controls": 2, "state": "ok" },
+        { "step": "Shipment details", "detail": "Revealed after addresses: packaging, weight, dims, date", "controls": 10, "state": "ok" },
+        { "step": "Rates", "detail": "AED 100.72 · arrives “--”", "controls": 3, "state": "price" },
+        { "step": "Choose rate", "detail": "Redirects to secure-login", "controls": null, "state": "wall" }
+      ],
+      "strengths": ["Fewest fields to a price (3 filled)", "One smart address field replaces country/city/zip", "Metric units default on the UAE site", "Progressive disclosure keeps the first screen short"]
+    }
+  ],
+  "issues": [
+    { "id": "EMX-01", "carrier": "emx", "step": "Homepage", "h": ["H4"], "sev": 3, "device": "Both", "title": "“Send a Shipment” button opens the Card Services page", "evidence": "Homepage link href is /CardServicesSolutions while the tile next to it points to products.emx.ae/sendshipment." },
+    { "id": "EMX-02", "carrier": "emx", "step": "Shipment details", "h": ["H4"], "sev": 2, "device": "Desktop", "title": "Two different 5-step models on the same screen", "evidence": "Stepper: Shipment Details → Service Type → Sender → Receiver → Review. Side panel: Origin & Destination → Describe → Price → Sender & Receiver → Booking." },
+    { "id": "EMX-03", "carrier": "emx", "step": "Service type", "h": ["H1", "H2"], "sev": 2, "device": "Both", "title": "Price card does not say what AED 25.00 includes", "evidence": "No VAT, pickup or insurance statement on the card. Inclusions sit behind “Details & Benefits”. Aramex states “Price including taxes”." },
+    { "id": "EMX-04", "carrier": "emx", "step": "Sender details", "h": ["H6"], "sev": 2, "device": "Both", "title": "Phone code list shows ~240 bare dial codes with no country names", "evidence": "Options read “+93, +358, +355 …” in an unsorted order. Repeated for the alternate number." },
+    { "id": "EMX-05", "carrier": "emx", "step": "Shipment details", "h": ["H7"], "sev": 2, "device": "Mobile", "title": "Weight, value and dimensions open the full text keyboard", "evidence": "Inputs are type=\"text\" with no inputmode, so phones show letters instead of a number pad." },
+    { "id": "EMX-06", "carrier": "emx", "step": "Sender details", "h": ["H7"], "sev": 2, "device": "Both", "title": "Name and email fields cannot be autofilled", "evidence": "first_name, last_name and email_address have no autocomplete tokens." },
+    { "id": "EMX-07", "carrier": "emx", "step": "Shipment details", "h": ["H4"], "sev": 2, "device": "Both", "title": "Emirate pickers and Shipment Value have no programmatic label", "evidence": "react-select inputs and the value field expose no label or aria-label to screen readers." },
+    { "id": "EMX-08", "carrier": "emx", "step": "Homepage", "h": ["H1"], "sev": 3, "device": "Mobile", "title": "Homepage, the way into booking, is slow and jumpy on phones", "evidence": "Lighthouse mobile: Performance 29, LCP 13.8 s, CLS 0.38, 4.3 MB transferred." },
+    { "id": "EMX-09", "carrier": "emx", "step": "Shipment details", "h": ["H8"], "sev": 1, "device": "Mobile", "title": "Domestic / International cards fill the first phone screen", "evidence": "At 375 px the first input starts about 720 px down." },
+    { "id": "EMX-10", "carrier": "emx", "step": "Homepage", "h": ["H8"], "sev": 2, "device": "Both", "title": "Quote is a secondary tile; the hero leads with tracking", "evidence": "Hero offers Track; “Get Rates” and “Send Shipment” sit in a tile row below." },
+    { "id": "EMX-11", "carrier": "emx", "step": "All steps", "h": ["H8"], "sev": 1, "device": "Both", "title": "Booking footer reads “© 2024”", "evidence": "Stale year on a payment journey weakens trust." },
+
+    { "id": "ARX-01", "carrier": "aramex", "step": "Rates", "h": ["H3"], "sev": 3, "device": "Both", "title": "SHIELD protection is pre-ticked and raises the total by 52%", "evidence": "Base AED 48.00 + SHIELD AED 25.00 checked by default = AED 73.00." },
+    { "id": "ARX-02", "carrier": "aramex", "step": "Calculate rates", "h": ["H5", "H9"], "sev": 3, "device": "Both", "title": "Length, width and height look optional, are required, and fail off-screen", "evidence": "Labels have no asterisk. On submit the page scrolls to the top and the three errors render out of view." },
+    { "id": "ARX-03", "carrier": "aramex", "step": "Create shipment", "h": ["H3", "H7"], "sev": 3, "device": "Both", "title": "No guest booking: sign-in wall after the quote", "evidence": "“Create Shipment Now” redirects to login.aramex.com, which pre-lists two common login errors." },
+    { "id": "ARX-04", "carrier": "aramex", "step": "Calculate rates", "h": ["H2"], "sev": 2, "device": "Both", "title": "UAE site does not preselect UAE and asks for zip codes", "evidence": "Domestic tab starts at “Select country” (list opens at Afghanistan). Zip Code shows as required until a country is set; the UAE has no postcodes." },
+    { "id": "ARX-05", "carrier": "aramex", "step": "Homepage", "h": ["H4"], "sev": 1, "device": "Both", "title": "“Send a Shipment” links go to two different URLs", "evidence": "/ship/send-shipments in the menu, /ship/send-a-shipment in the page body." },
+    { "id": "ARX-06", "carrier": "aramex", "step": "Calculate rates", "h": ["H7", "H8"], "sev": 2, "device": "Mobile", "title": "Small inputs zoom the page on iPhone; CTA is two screens down", "evidence": "9 of 11 inputs use 14 px text (iOS zooms below 16 px). Get Rates sits ~1,600 px down behind a decorative image." },
+    { "id": "ARX-07", "carrier": "aramex", "step": "Homepage", "h": ["H8"], "sev": 2, "device": "Both", "title": "Homepage hero is tracking only", "evidence": "No quote or ship CTA above the fold; Rate Calculator is a lower section card." },
+    { "id": "ARX-08", "carrier": "aramex", "step": "Homepage", "h": ["H1"], "sev": 2, "device": "Mobile", "title": "Slow homepage on mobile", "evidence": "Lighthouse mobile: Performance 39, LCP 9.4 s, Best Practices 50." },
+    { "id": "ARX-09", "carrier": "aramex", "step": "Calculate rates", "h": ["H1"], "sev": 2, "device": "Desktop", "title": "Country list opened empty on first load", "evidence": "Typing found no options until the page was reloaded. Observed once." },
+
+    { "id": "DHL-01", "carrier": "dhl", "step": "Get Quote", "h": ["H1", "H9"], "sev": 4, "device": "Desktop", "title": "Get Quote returns no rates and no message", "evidence": "Two attempts on the UAE domestic lane. The page stays put; the console shows a 404 from the address lookup." },
+    { "id": "DHL-02", "carrier": "dhl", "step": "Package details", "h": ["H5"], "sev": 3, "device": "Both", "title": "Pre-filled weight turns “2” into 0.52 kg", "evidence": "Choosing “My Own Package” fills 0.5 kg; typing appends to it with no warning." },
+    { "id": "DHL-03", "carrier": "dhl", "step": "Homepage widget", "h": ["H3", "H7"], "sev": 3, "device": "Mobile", "title": "Phones are sent to a country and language picker first", "evidence": "The /ae/en quote link redirects to /index/en/mobile.html: “Select Country/Territory”, “Select Language”, Next." },
+    { "id": "DHL-04", "carrier": "dhl", "step": "From / To", "h": ["H2"], "sev": 2, "device": "Both", "title": "UAE not preset; emirate is called “Province”", "evidence": "Country starts empty on the UAE site; the homepage widget truncates the label to “Countr…”." },
+    { "id": "DHL-05", "carrier": "dhl", "step": "Package details", "h": ["H8"], "sev": 2, "device": "Both", "title": "Legal liability paragraph dominates the package step", "evidence": "A 60-word GCAA warning sits above the inputs before any price is shown." },
+    { "id": "DHL-06", "carrier": "dhl", "step": "Homepage widget", "h": ["H1"], "sev": 2, "device": "Both", "title": "Heavy, shifting booking page", "evidence": "Lighthouse: mobile LCP 14.2 s; desktop CLS 0.27 and 6.9 MB transferred." },
+    { "id": "DHL-07", "carrier": "dhl", "step": "From / To", "h": ["H5"], "sev": 2, "device": "Desktop", "title": "Wrong country committed when the suggestion list closed", "evidence": "Destination silently became “Afghanistan”; only a red border signalled it. Observed once." },
+
+    { "id": "FDX-01", "carrier": "fedex", "step": "Rates", "h": ["H1"], "sev": 3, "device": "Both", "title": "Rate shows no delivery date", "evidence": "“Arrives on --” and “Delivered by --” next to AED 100.72." },
+    { "id": "FDX-02", "carrier": "fedex", "step": "Choose rate", "h": ["H3"], "sev": 3, "device": "Both", "title": "No guest booking: choosing a rate opens sign-in", "evidence": "Clicking the price goes to /secure-login/en-ae." },
+    { "id": "FDX-03", "carrier": "fedex", "step": "Rates", "h": ["H8"], "sev": 2, "device": "Both", "title": "Account promo sits between the form and the rates", "evidence": "“Sign up now and save up to 55%” banner with OPEN AN ACCOUNT pushes rates below the fold." },
+    { "id": "FDX-04", "carrier": "fedex", "step": "Rates", "h": ["H3"], "sev": 2, "device": "Both", "title": "Pickup is pre-ticked with no price impact shown", "evidence": "“I want this shipment picked up” is checked by default." },
+    { "id": "FDX-05", "carrier": "fedex", "step": "Rate tool", "h": ["H4"], "sev": 1, "device": "Both", "title": "Raw translation key exposed", "evidence": "Page text includes “loadingIndicator.loadingComplete”." },
+    { "id": "FDX-06", "carrier": "fedex", "step": "Rate tool", "h": ["H1"], "sev": 3, "device": "Mobile", "title": "Rate page is the slowest page audited", "evidence": "Lighthouse mobile: Performance 11, LCP 27.0 s, TBT 2.8 s. Homepage transfers ~20 MB." },
+    { "id": "FDX-07", "carrier": "fedex", "step": "Shipment details", "h": ["H4"], "sev": 2, "device": "Both", "title": "L × W × H inputs share one label", "evidence": "The three dimension inputs have no individual accessible names." }
+  ],
+  "recommendations": [
+    { "id": "R1", "title": "Repoint “Send a Shipment” to the booking flow", "detail": "One-line link fix on the homepage. Today it sends booking intent to Card Services.", "impact": 4, "effort": 1, "fixes": ["EMX-01"] },
+    { "id": "R2", "title": "Make guest booking and “no pre-ticked extras” a stated promise", "detail": "Aramex and FedEx force sign-in and pre-tick extras. Say “No account needed” on the price card and keep add-ons opt-in.", "impact": 4, "effort": 1, "fixes": ["ARX-01", "ARX-03", "FDX-02"] },
+    { "id": "R3", "title": "Mobile input hygiene pass", "detail": "inputmode=\"decimal\" on numbers, autocomplete tokens on name/email/tel, labels on custom selects.", "impact": 3, "effort": 1, "fixes": ["EMX-05", "EMX-06", "EMX-07"] },
+    { "id": "R4", "title": "Price card that answers “what am I paying for?”", "detail": "“AED 25.00 incl. VAT · pickup included · delivered by Sat 31 Oct”, with the main inclusions visible, not behind a link.", "impact": 4, "effort": 2, "fixes": ["EMX-03"] },
+    { "id": "R5", "title": "Searchable country picker for phone codes", "detail": "Default +971 with flag and country name; search by name or code.", "impact": 3, "effort": 2, "fixes": ["EMX-04"] },
+    { "id": "R6", "title": "Compact mobile start", "detail": "Swap the two large cards for a segmented Domestic | International control and add a sticky Calculate bar.", "impact": 3, "effort": 2, "fixes": ["EMX-09"] },
+    { "id": "R7", "title": "One step model", "detail": "Rename the side-panel steps to match the stepper, or remove the panel once the form starts.", "impact": 2, "effort": 1, "fixes": ["EMX-02"] },
+    { "id": "R8", "title": "Quote starter in the homepage hero", "detail": "From emirate, To emirate, weight. Carry the values into step 1 of the wizard.", "impact": 5, "effort": 3, "fixes": ["EMX-10"] },
+    { "id": "R9", "title": "Homepage mobile speed budget", "detail": "Resize and compress the hero, set image dimensions, defer third-party scripts. Target LCP < 2.5 s and CLS < 0.1.", "impact": 4, "effort": 3, "fixes": ["EMX-08"] },
+    { "id": "R10", "title": "Save or share this quote", "detail": "Let undecided users email the quote to themselves or copy a link that restores it.", "impact": 3, "effort": 3, "fixes": [] },
+    { "id": "R11", "title": "Refresh footer year and stale copy", "detail": "Small trust signal on a payment journey.", "impact": 1, "effort": 1, "fixes": ["EMX-11"] }
+  ],
+  "abTests": [
+    {
+      "id": "T1", "name": "Quote starter in the hero",
+      "hypothesis": "Putting From, To and weight in the homepage hero will raise quote starts, because booking intent no longer has to find a secondary tile.",
+      "control": "Current hero: tracking field, quote as a tile below",
+      "variant": "Hero with three fields and a “Get price” button that deep-links into step 1 with values filled",
+      "primary": "Sessions that reach the price step ÷ homepage sessions",
+      "secondary": ["Bookings submitted", "Time from landing to price"],
+      "guardrails": ["Tracking searches per session", "Homepage bounce rate"],
+      "baseline": 4, "mde": 15
+    },
+    {
+      "id": "T2", "name": "Transparent price card",
+      "hypothesis": "Stating VAT, pickup and the delivery date on the card, plus “No account needed”, will move more people from price to sender details.",
+      "control": "“Express Service · Estimated delivery · AED 25.00 · Details & Benefits”",
+      "variant": "“AED 25.00 incl. VAT · Pickup included · Delivered by Sat 31 Oct · No account needed”",
+      "primary": "Service step → Sender step progression",
+      "secondary": ["Review-step completion", "Clicks on Details & Benefits"],
+      "guardrails": ["Support contacts about price", "Refund requests"],
+      "baseline": 55, "mde": 5
+    },
+    {
+      "id": "T3", "name": "Mobile form ergonomics",
+      "hypothesis": "A compact type toggle, number keypads and a sticky Calculate bar will cut time to price on phones and lift completion.",
+      "control": "Current mobile step 1",
+      "variant": "Segmented Domestic | International, inputmode=decimal, sticky Calculate bar",
+      "primary": "Mobile step-1 completion rate",
+      "secondary": ["Median time to first price", "Field error rate"],
+      "guardrails": ["Wrong-weight corrections at review", "Desktop completion (unchanged)"],
+      "baseline": 35, "mde": 8
+    }
+  ],
+  "mobileChecks": [
+    { "carrier": "emx", "redirect": "None", "inputText": "16 px", "cta": "Below the fold", "firstField": "~720 px", "note": "Stepper collapses to “1 of 5”" },
+    { "carrier": "aramex", "redirect": "None", "inputText": "9 of 11 at 14 px", "cta": "~1,600 px down", "firstField": "~600 px", "note": "Decorative image above the form" },
+    { "carrier": "dhl", "redirect": "To country/language picker", "inputText": "16 px", "cta": "n/a", "firstField": "Picker first", "note": "Quote context lost" },
+    { "carrier": "fedex", "redirect": "None", "inputText": "16 px", "cta": "Revealed after addresses", "firstField": "~340 px", "note": "Shortest first screen" }
+  ],
+  "keywords": ["customer journey", "usability", "UX/UI", "quotation", "booking", "checkout", "payment", "competitor benchmarking", "navigation", "calls to action", "mobile", "desktop"]
+}

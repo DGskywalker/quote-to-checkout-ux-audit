@@ -1,0 +1,17 @@
+{
+  "name": "quote-to-checkout-audit",
+  "version": "1.0.0",
+  "description": "Shipment booking journey UX audit and competitor benchmark (EMX, Aramex, DHL, FedEx)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lighthouse": "node run-lighthouse.mjs",
+    "build": "node build.mjs",
+    "pdf": "node export-pdf.mjs"
+  },
+  "dependencies": {
+    "chrome-launcher": "^1.1.0",
+    "lighthouse": "^12.0.0",
+    "playwright": "1.48.2"
+  }
+}

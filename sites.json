@@ -1,0 +1,10 @@
+[
+  { "id": "emx", "name": "EMX", "page": "home", "url": "https://www.emx.ae/" },
+  { "id": "emx", "name": "EMX", "page": "booking", "url": "https://products.emx.ae/sendshipment" },
+  { "id": "aramex", "name": "Aramex", "page": "home", "url": "https://www.aramex.com/ae/en" },
+  { "id": "aramex", "name": "Aramex", "page": "booking", "url": "https://www.aramex.com/ae/en/ship/calculate-shipping-rates" },
+  { "id": "dhl", "name": "DHL Express", "page": "home", "url": "https://www.dhl.com/ae-en/home.html" },
+  { "id": "dhl", "name": "DHL Express", "page": "booking", "url": "https://mydhl.express.dhl/ae/en/home.html" },
+  { "id": "fedex", "name": "FedEx", "page": "home", "url": "https://www.fedex.com/en-ae/home.html" },
+  { "id": "fedex", "name": "FedEx", "page": "booking", "url": "https://www.fedex.com/en-ae/online/rating.html" }
+]
