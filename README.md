@@ -4,9 +4,7 @@
 
 I walked each carrier's quote-to-checkout flow with the same parcel, measured every page with Lighthouse on mobile and desktop, and rated 34 usability issues against Nielsen's 10 heuristics. The study ends with 11 recommendations for EMX ranked by impact and effort, and 3 A/B tests with a sample-size calculator.
 
-📄 **[Read the case study](docs/index.html)** · **[Download the PDF](docs/quote-to-checkout.pdf)**
-
-> Once GitHub Pages is on, the live page is at `https://<your-username>.github.io/<repo-name>/`.
+🔗 **[Live case study](https://quote-to-checkout-ux-audit.vercel.app/)** · **[PDF](https://quote-to-checkout-ux-audit.vercel.app/quote-to-checkout.pdf)**
 
 ## Key findings
 
@@ -59,9 +57,16 @@ On macOS, Playwright's Chromium is at:
 
 Re-run one site with `node run-lighthouse.mjs aramex` (or `aramex-booking`). Results merge into the existing summary.
 
-## Publish on GitHub Pages
+## Deploy
 
-Settings → Pages → Build and deployment → **Deploy from a branch** → `main` / `/docs`.
+The live site is hosted on Vercel. `vercel.json` serves the `docs/` folder as-is, with no build step.
+
+```bash
+npm run build && npm run pdf && cp dist/quote-to-checkout.pdf docs/
+npx vercel deploy --prod
+```
+
+GitHub Pages works too: Settings → Pages → Deploy from a branch → `main` / `/docs`.
 
 ## Limits
 

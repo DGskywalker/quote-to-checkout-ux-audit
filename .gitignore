@@ -2,3 +2,5 @@ node_modules/
 results/raw/
 .DS_Store
 dist/
+.vercel/
+.vercel
